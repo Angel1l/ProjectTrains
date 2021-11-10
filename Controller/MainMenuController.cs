@@ -27,6 +27,9 @@ namespace VEZIMENAMOYPOEZD.Controller
                 case 3:
                     FindByLastOstanovochka();
                     break;
+                case 4:
+                    
+                    break;
                 default:
                     _menuView.ShowError();
                     break;
