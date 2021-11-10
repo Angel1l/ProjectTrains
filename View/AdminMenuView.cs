@@ -9,7 +9,7 @@ namespace VEZIMENAMOYPOEZD.View
 {
     class AdminMenuView
     {
-        public void ADMIN()
+        public void admin()
         {
             int b = 123;
             int a;
@@ -18,7 +18,25 @@ namespace VEZIMENAMOYPOEZD.View
             if (a == b)
             {
                 Console.WriteLine("Добро пожаловать в клуб дружище");
-
+                Console.WriteLine("Для того что бы создать поезд напишите: 1");
+                Console.WriteLine("Для того что бы удалить поезд напишите: 2");                
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Add();
+                        break;
+                    case "2":
+                        Delete();
+                        
+                        break;
+                    default:
+                        ShowError();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Pshel von");
             }
 
         }
@@ -57,7 +75,12 @@ namespace VEZIMENAMOYPOEZD.View
             Console.WriteLine("Введите номер рейса который хотите удалить:");
             a = Convert.ToInt32(Console.ReadLine());
 
-            //TripsStorage.trips.RemoveAt(a);
+            TripsStorage.trips.RemoveAt(a);
+        }
+
+        public void ShowError()
+        {
+            Console.WriteLine("ERROR!!");
         }
     }
 }

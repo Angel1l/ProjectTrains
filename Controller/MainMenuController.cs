@@ -5,13 +5,21 @@ namespace VEZIMENAMOYPOEZD.Controller
 {
    public class MainMenuController
     {
+        private readonly AdminMenuView _adminView;
+        private readonly MenuChoiceAdmin _choiceStorageadmin;
         private readonly MainMenuView _menuView;
         private readonly MenuChoiceStorage _choiceStorage;
 
+
+       
+
         public MainMenuController()
         {
+            _adminView = new AdminMenuView();
+            _choiceStorageadmin = MenuChoiceAdmin.GetInstance();
             _menuView = new MainMenuView();
             _choiceStorage = MenuChoiceStorage.GetInstance();
+            
         }
 
         private void MenuSelectedHandler(int menu)
@@ -26,6 +34,12 @@ namespace VEZIMENAMOYPOEZD.Controller
                     break;
                 case 3:
                     FindByLastOstanovochka();
+                    break;
+                case 4:
+                    ShowTodayReus();
+                    break;
+                case 5:
+                    _adminView.admin();
                     break;
                 default:
                     _menuView.ShowError();
@@ -60,5 +74,13 @@ namespace VEZIMENAMOYPOEZD.Controller
         {
             _menuView.FindByLastOstanovochka(TripsStorage.trips);
         }
+
+        private void ShowTodayReus()
+        {
+            _menuView.ShowTodayReus();
+        }
+        
+       
+        
     }
 }

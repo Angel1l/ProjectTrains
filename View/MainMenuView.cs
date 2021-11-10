@@ -36,18 +36,32 @@ namespace VEZIMENAMOYPOEZD.View
 
             TripModel found = TripsStorage.trips.Find(item => item.TripTo == b);
             Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+            if (found != null)
+            {
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
 
-            //if (TripsStorage.trips != null)
-            //{
-            //    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+            }
+            else
+            {
+                Console.WriteLine("Неверное место прибытия");
+            }
 
-            //}
-            //else
-            //{
-            //    Console.WriteLine("EROR");  pizdez ne rabotaet
-            //}
         }
 
+        public void ShowTodayReus()
+        {
+            TripModel found = TripsStorage.trips.Find(item => item.ArrivalTime == DateTime.Today);
+            if (found != null)
+            {
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+
+            }
+            else
+            {
+                Console.WriteLine("На сегодня рейсов нету");
+            }
+            
+        }
         public void FindById(List<TripModel> trips)
         {
             int a;

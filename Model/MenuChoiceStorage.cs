@@ -19,7 +19,8 @@ namespace VEZIMENAMOYPOEZD.Model
                 new MenuChoiceModel(1, "Показать все рейсы"),
                 new MenuChoiceModel(2, "Найти по номеру рейса"),
                 new MenuChoiceModel(3, "Найти по конечной остановке"),
-                new MenuChoiceModel(4, "")
+                new MenuChoiceModel(4, ""),
+                new MenuChoiceModel(5, "Войти как админ")
             };
         }
 

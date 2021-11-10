@@ -1,24 +1,20 @@
-﻿using VEZIMENAMOYPOEZD.Model;
+﻿using System;
+using VEZIMENAMOYPOEZD.Model;
 using VEZIMENAMOYPOEZD.View;
 
 namespace VEZIMENAMOYPOEZD.Controller
 {
   public class AdminController
     {
-        private void ADMIN(int menu)
+        private readonly AdminMenuView _adminView;
+        private readonly MenuChoiceAdmin _choiceStorageadmin;
+
+        public AdminController()
         {
-            switch (menu)
-            {
-                case 1:
-                    
-                    break;
-                case 2:
-                    
-                    break;               
-                default:
-                    
-                    break;
-            }
+
+            _adminView = new AdminMenuView();
+            _choiceStorageadmin = MenuChoiceAdmin.GetInstance();
         }
+             
     }
 }
