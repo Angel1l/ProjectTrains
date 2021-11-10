@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VEZIMENAMOYPOEZD.View
 {
-    class AdminMenuView
+   public class AdminMenuView
     {
         public void ADMIN()
         {
@@ -19,6 +19,10 @@ namespace VEZIMENAMOYPOEZD.View
             {
                 Console.WriteLine("Добро пожаловать в клуб дружище");
 
+            }
+            else
+            {
+                Console.WriteLine("Pshel von nigoday");
             }
 
         }
@@ -48,7 +52,8 @@ namespace VEZIMENAMOYPOEZD.View
             Console.WriteLine("7: Цена билета");
             s = Convert.ToInt32(Console.ReadLine());
 
-            //TripsStorage.trips.Add(a); Chtoto poxojee
+            
+            TripsStorage.trips.Add(a); 
         }
 
         public void Delete()
@@ -57,7 +62,7 @@ namespace VEZIMENAMOYPOEZD.View
             Console.WriteLine("Введите номер рейса который хотите удалить:");
             a = Convert.ToInt32(Console.ReadLine());
 
-            //TripsStorage.trips.RemoveAt(a);
+            TripsStorage.trips.RemoveAt(a);
         }
     }
 }
