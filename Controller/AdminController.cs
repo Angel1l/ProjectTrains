@@ -6,6 +6,7 @@ namespace VEZIMENAMOYPOEZD.Controller
 {
   public class AdminController
     {
+
         private readonly AdminMenuView _adminView;
         private readonly MenuChoiceAdmin _choiceStorageadmin;
 

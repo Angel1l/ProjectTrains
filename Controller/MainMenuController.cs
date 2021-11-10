@@ -80,7 +80,6 @@ namespace VEZIMENAMOYPOEZD.Controller
             _menuView.ShowTodayReus();
         }
         
-       
         
     }
 }
