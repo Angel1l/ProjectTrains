@@ -5,6 +5,6 @@
     "\\Model",
     "\\View"
   ],
-  "SelectedNode": "\\View\\MainMenuView.cs",
+  "SelectedNode": "\\Controller\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }
