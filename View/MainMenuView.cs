@@ -9,7 +9,12 @@ namespace VEZIMENAMOYPOEZD.View
 {    
    public class MainMenuView
     {
+        public event Action<int> PasswordforUser = delegate { };
+        
         public event Action<int> MenuSelected = delegate { };
+
+        public event Action<int> ShowAddOrDel = delegate { };
+      
 
         private readonly InputComponent _input;
 
@@ -23,7 +28,7 @@ namespace VEZIMENAMOYPOEZD.View
             ShowTripsHeader();
             foreach (var oneTrip in trips)
             {
-                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", oneTrip.Id, oneTrip.DepartureTime, oneTrip.TripFrom, oneTrip.ArrivalTime, oneTrip.TripTo, oneTrip.TicketPrice);
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", oneTrip.Id, oneTrip.DepartureTime, oneTrip.TripFrom, oneTrip.ArrivalTime, oneTrip.TripTo, oneTrip.FreePlcae, oneTrip.TicketPrice);
 
             }
         }
@@ -34,11 +39,10 @@ namespace VEZIMENAMOYPOEZD.View
             Console.WriteLine("Напишите место прибытия: ");
             b = Convert.ToString(Console.ReadLine());
 
-            TripModel found = TripsStorage.trips.Find(item => item.TripTo == b);
-            Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+            TripModel found = TripsStorage.trips.Find(item => item.TripTo == b);           
             if (found != null)
             {
-                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
 
             }
             else
@@ -48,12 +52,31 @@ namespace VEZIMENAMOYPOEZD.View
 
         }
 
+        public void ShowWeekReus(List<TripModel> trips)
+        {
+            ShowTripsHeader();
+            foreach (var oneTrip in trips)
+            {
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", oneTrip.Id, oneTrip.DepartureTime, oneTrip.TripFrom, oneTrip.ArrivalTime, oneTrip.TripTo, oneTrip.FreePlcae, oneTrip.TicketPrice);
+
+            }
+        }
+        
+        public void ShooowFreePlace(List<TripModel> trips)
+        {
+            ShowTripsHeader();
+            foreach (var oneTrip in trips)
+            {
+                Console.WriteLine("Рейс:{0}, Kоличество мест:{1}, Цена:{2}", oneTrip.Id, oneTrip.FreePlcae, oneTrip.TicketPrice);
+
+            }
+        }
         public void ShowTodayReus()
         {
             TripModel found = TripsStorage.trips.Find(item => item.ArrivalTime == DateTime.Today);
             if (found != null)
             {
-                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
 
             }
             else
@@ -68,8 +91,8 @@ namespace VEZIMENAMOYPOEZD.View
             Console.WriteLine("Напишите номер рейса: ");
             a = Convert.ToInt32(Console.ReadLine());
 
-            TripModel found = TripsStorage.trips.Find(item => item.Id == a);                   
-            Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Цена:{5}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.TicketPrice);
+            TripModel found = TripsStorage.trips.Find(item => item.Id == a);
+            Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
 
         }
         public void ShowMenu(List<MenuChoiceModel> choices)
@@ -105,5 +128,45 @@ namespace VEZIMENAMOYPOEZD.View
         {
             Console.WriteLine("ТАБЛО");
         }
+        public void ShowPassword()
+        {
+            int a;
+            Console.WriteLine("Введите пароль:");
+            a = Convert.ToInt32(Console.ReadLine());
+            PasswordforUser(a);
+        }
+       
+        public void ShowDelOrAdd()
+        {
+            int c;
+            Console.WriteLine("Добро пожаловать в клуб дружище");
+            Console.WriteLine("Для того что бы создать поезд напишите: 1");
+            Console.WriteLine("Для того что бы удалить поезд напишите: 2");
+            c = Convert.ToInt32(Console.ReadLine());
+            ShowAddOrDel(c);
+        }
+
+        
+       
+        public void ShowPrice()
+        {
+            int a;
+            Console.WriteLine("Введите сумуму: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            
+            TripModel found = TripsStorage.trips.Find(item => item.TicketPrice == a);          
+            if (found != null)
+            {
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
+
+            }
+            else
+            {
+                Console.WriteLine("Eore");
+            }
+        }
+        
+
     }
-}
+    }
+
