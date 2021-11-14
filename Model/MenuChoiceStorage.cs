@@ -9,9 +9,7 @@ namespace VEZIMENAMOYPOEZD.Model
    public class MenuChoiceStorage
     {
         public List<MenuChoiceModel> Choices { get; }
-
         private static MenuChoiceStorage _instance;
-
         private MenuChoiceStorage()
         {
             Choices = new List<MenuChoiceModel>
@@ -25,9 +23,7 @@ namespace VEZIMENAMOYPOEZD.Model
                 new MenuChoiceModel(7, "Показать количество мест"),
                 new MenuChoiceModel(8, "Войти как админ")
             };
-        }
-
-        
+        }     
         public static MenuChoiceStorage GetInstance()
         {
             if (_instance == null)

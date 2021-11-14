@@ -22,7 +22,6 @@ namespace VEZIMENAMOYPOEZD.Model
             };
         }
 
-
         public static MenuChoiceAdmin GetInstance()
         {
             if (_instance == null)

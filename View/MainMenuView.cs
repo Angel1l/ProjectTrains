@@ -6,23 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VEZIMENAMOYPOEZD.View
-{    
-   public class MainMenuView
+{
+    public class MainMenuView
     {
         public event Action<int> PasswordforUser = delegate { };
-        
         public event Action<int> MenuSelected = delegate { };
-
         public event Action<int> ShowAddOrDel = delegate { };
-      
-
+        public event Action<int> delete = delegate { };
         private readonly InputComponent _input;
-
         public MainMenuView()
         {
             _input = new InputComponent();
         }
-        
         public void ShowTripsTable(List<TripModel> trips)
         {
             ShowTripsHeader();
@@ -31,15 +26,15 @@ namespace VEZIMENAMOYPOEZD.View
                 Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", oneTrip.Id, oneTrip.DepartureTime, oneTrip.TripFrom, oneTrip.ArrivalTime, oneTrip.TripTo, oneTrip.FreePlcae, oneTrip.TicketPrice);
 
             }
+            Console.ReadKey();
         }
-
         public void FindByLastOstanovochka(List<TripModel> trips)
         {
             string b;
             Console.WriteLine("Напишите место прибытия: ");
             b = Convert.ToString(Console.ReadLine());
 
-            TripModel found = TripsStorage.trips.Find(item => item.TripTo == b);           
+            TripModel found = TripsStorage.trips.Find(item => item.TripTo == b);
             if (found != null)
             {
                 Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
@@ -49,9 +44,8 @@ namespace VEZIMENAMOYPOEZD.View
             {
                 Console.WriteLine("Неверное место прибытия");
             }
-
+            Console.ReadKey();
         }
-
         public void ShowWeekReus(List<TripModel> trips)
         {
             ShowTripsHeader();
@@ -60,8 +54,8 @@ namespace VEZIMENAMOYPOEZD.View
                 Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", oneTrip.Id, oneTrip.DepartureTime, oneTrip.TripFrom, oneTrip.ArrivalTime, oneTrip.TripTo, oneTrip.FreePlcae, oneTrip.TicketPrice);
 
             }
+            Console.ReadKey();
         }
-        
         public void ShooowFreePlace(List<TripModel> trips)
         {
             ShowTripsHeader();
@@ -70,6 +64,7 @@ namespace VEZIMENAMOYPOEZD.View
                 Console.WriteLine("Рейс:{0}, Kоличество мест:{1}, Цена:{2}", oneTrip.Id, oneTrip.FreePlcae, oneTrip.TicketPrice);
 
             }
+            Console.ReadKey();
         }
         public void ShowTodayReus()
         {
@@ -83,7 +78,7 @@ namespace VEZIMENAMOYPOEZD.View
             {
                 Console.WriteLine("На сегодня рейсов нету");
             }
-            
+            Console.ReadKey();
         }
         public void FindById(List<TripModel> trips)
         {
@@ -93,10 +88,11 @@ namespace VEZIMENAMOYPOEZD.View
 
             TripModel found = TripsStorage.trips.Find(item => item.Id == a);
             Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
-
+            Console.ReadKey();
         }
         public void ShowMenu(List<MenuChoiceModel> choices)
         {
+            Console.Clear();           
             foreach (var choice in choices)
             {
                 Console.WriteLine($"{choice.ChoiceId} - {choice.ChoiceText}");
@@ -113,17 +109,14 @@ namespace VEZIMENAMOYPOEZD.View
                 }
             } while (!isCorrect);
         }
-
         public void ShowHeader()
         {
             Console.WriteLine("Добро пожаловать, используйте меню");
-        } 
-
+        }
         public void ShowError()
         {
             Console.WriteLine("ERROR!!");
         }
-
         private void ShowTripsHeader()
         {
             Console.WriteLine("ТАБЛО");
@@ -135,7 +128,6 @@ namespace VEZIMENAMOYPOEZD.View
             a = Convert.ToInt32(Console.ReadLine());
             PasswordforUser(a);
         }
-       
         public void ShowDelOrAdd()
         {
             int c;
@@ -145,28 +137,49 @@ namespace VEZIMENAMOYPOEZD.View
             c = Convert.ToInt32(Console.ReadLine());
             ShowAddOrDel(c);
         }
+        public void ShowwError()
+        {
+            Console.WriteLine("ERROR!!");
+        }
 
-        
-       
         public void ShowPrice()
         {
             int a;
             Console.WriteLine("Введите сумуму: ");
             a = Convert.ToInt32(Console.ReadLine());
-            
-            TripModel found = TripsStorage.trips.Find(item => item.TicketPrice == a);          
-            if (found != null)
-            {
-                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
 
-            }
-            else
+            TripModel found = TripsStorage.trips.Find(item => item.TicketPrice == a);
+            foreach (var item in TripsStorage.trips)
             {
-                Console.WriteLine("Eore");
+                if (item.TicketPrice == a)
+                {
+                    Console.WriteLine("Мы нашли для вас подходящий рейс");
+                    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
+
+                }
             }
+            Console.WriteLine("==================================================================================");
+            foreach (var item in TripsStorage.trips)
+            {
+                if (item.TicketPrice > a)
+                {
+                    Console.WriteLine("Мы так же можем предложить вам билет по дороже");
+                    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
+
+                }
+            }
+            Console.WriteLine("==================================================================================");
+            foreach (var item in TripsStorage.trips)
+            {
+                if (item.TicketPrice < a)
+                {
+                    Console.WriteLine("Мы так же можем предложить вам билет по дешевлее");
+                    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
+
+                }
+            }
+            Console.ReadKey();
         }
-        
-
     }
-    }
+}
 

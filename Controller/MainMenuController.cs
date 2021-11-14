@@ -4,16 +4,11 @@ using VEZIMENAMOYPOEZD.View;
 namespace VEZIMENAMOYPOEZD.Controller
 {
    public class MainMenuController
-    {
-        
+    {       
         private readonly MainMenuView _menuView;
         private readonly MenuChoiceStorage _choiceStorage;
-
-       
-
-        private AdminController admin;
-
-
+        private readonly AdminController admin;
+        private readonly AdminView adminView;
 
         public MainMenuController()
         {
@@ -21,6 +16,7 @@ namespace VEZIMENAMOYPOEZD.Controller
             _menuView = new MainMenuView();
             _choiceStorage = MenuChoiceStorage.GetInstance();
             admin = new AdminController();
+            adminView = new AdminView();
         }
 
         private void MenuSelectedHandler(int menu)
@@ -28,7 +24,7 @@ namespace VEZIMENAMOYPOEZD.Controller
             switch (menu)
             {
                 case 1:
-                    ShowTripsTable();
+                    ShowTripsTable();                    
                     break;
                 case 2:
                     FindById();
@@ -49,13 +45,13 @@ namespace VEZIMENAMOYPOEZD.Controller
                     ShowFreePlace();
                     break;
                 case 8:
-                    _menuView.ShowPassword();
-                    _menuView.ShowDelOrAdd();
+                    _menuView.ShowPassword();                    
                     break;
                 default:
                     _menuView.ShowError();
-                    break;
+                    break;                   
             }
+            _menuView.ShowMenu(_choiceStorage.Choices);
         }
         
         public void Run()
@@ -63,27 +59,30 @@ namespace VEZIMENAMOYPOEZD.Controller
             _menuView.PasswordforUser += _menuView_PasswordforUser;
             _menuView.ShowAddOrDel += _menuView_ShowAddOrDel;
             _menuView.MenuSelected += MenuSelectedHandler;
-          
+           
+
+
             _menuView.ShowHeader();
             _menuView.ShowMenu(_choiceStorage.Choices);
            
         }
 
-      
+        
 
         private void _menuView_ShowAddOrDel(int c)
         {
             switch (c)
             {
                 case 1:
-                    ADD();
+                    admin.Add();
+                    ShowTripsTable();
                     break;
                 case 2:
-                    DELETE();
+                    adminView.DeleteTrain();
                     ShowTripsTable();
                     break;
                 default:
-                    EROR();
+                    admin.EROR();
                     break;
             }
         }
@@ -96,8 +95,9 @@ namespace VEZIMENAMOYPOEZD.Controller
         public void Stop()
         {
             _menuView.MenuSelected -= MenuSelectedHandler;
-            _menuView.ShowAddOrDel -= MenuSelectedHandler;
-            
+            _menuView.ShowAddOrDel -= _menuView_ShowAddOrDel;
+            _menuView.PasswordforUser -= _menuView_PasswordforUser;
+            admin.Stop();
         }
 
         private void ShowTripsTable()
@@ -129,20 +129,7 @@ namespace VEZIMENAMOYPOEZD.Controller
         {
             _menuView.ShooowFreePlace(TripsStorage.trips);
         }
-        private void ADD()
-        {
-            admin.Add();
-        }
-
-        private void DELETE()
-        {
-            admin.Delete();
-        }
-        private void EROR()
-        {
-            admin.ShowError();
-        }
-       
-       
+        
+             
     }
 }

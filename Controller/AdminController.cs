@@ -7,75 +7,115 @@ namespace VEZIMENAMOYPOEZD.Controller
   public class AdminController
     {
         private readonly MainMenuView _menuView;
-        private readonly MenuChoiceAdmin _choiceStorageadmin;
-       
-
-
+        private readonly MenuChoiceAdmin _choiceStorageadmin;        
+        private readonly AdminView adminView;
         public AdminController()
         {
             _menuView = new MainMenuView();
             _choiceStorageadmin = MenuChoiceAdmin.GetInstance();
+            adminView = new AdminView();
+
+
+            adminView.Deletetrain += AdminView_Deletetrain;
+           
+
+            
         }
 
+        public void Stop()
+        {
+            adminView.Deletetrain -= AdminView_Deletetrain;
+        }
+        private void AdminView_Deletetrain(int getnomber)
+        {
+            DeteleTrain(getnomber);
+        }
         public void PriemWork (int a)
         {
             
             int b = 123;           
             if (a == b)
             {
+
                 _menuView.ShowDelOrAdd();
-                
-               
+
             }
             else
             {
-                Console.WriteLine("Pshel von");
+                ShowError();
+                
             }
-
+            
         }
 
+        private void _menuView_ShowAddOrDel(int c)
+        {
+            switch (c)
+            {
+                case 1:
+                    ADD();
+                    ShowTripsTable();
+                    break;
+                case 2:
+                    adminView.DeleteTrain();
+                    ShowTripsTable();
+                    break;
+                default:
+                    EROR();
+                    break;
+            }
+        }
 
         public void Add()
         {
-            int a;
-            DateTime b;
-            string v;
-            DateTime c;
-            string n;
-            string m;
-            int q;
-            int s;
+            int id;
+            DateTime timefrom;
+            string placefrom;
+            DateTime timeto;           
+            string placeto;
+            int freeplace;
+            int priceticket;
             Console.WriteLine("Для того что бы добавить поезд следуйте инcтрукции");
             Console.WriteLine("1: Введите айди рейса");
-            a = Convert.ToInt32(Console.ReadLine());
+            id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("2: Введите время отбытия рейса");
-            b = Convert.ToDateTime(Console.ReadLine());
+            timefrom = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine("3: Введите место отбытия рейса");
-            v = Convert.ToString(Console.ReadLine());
+            placefrom = Convert.ToString(Console.ReadLine());
             Console.WriteLine("4: Введите время прибытия");
-            c = Convert.ToDateTime(Console.ReadLine());
+            timeto = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine("5: Введите место прибытия");
-            n = Convert.ToString(Console.ReadLine());
+            placeto = Convert.ToString(Console.ReadLine());
             Console.WriteLine("6: Введите Kоличество мест");          
-            q = Convert.ToInt32(Console.ReadLine());
+            freeplace = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("7: Введите цена билета");
-            s = Convert.ToInt32(Console.ReadLine());
+            priceticket = Convert.ToInt32(Console.ReadLine());
 
-            TripsStorage.trips.Add(new TripModel { Id = a, DepartureTime = b, TripFrom = v, ArrivalTime = c, TripTo = n, FreePlcae = q, TicketPrice = s });//Не работает хз чо так 
+            TripsStorage.trips.Add(new TripModel(id,timefrom,placefrom,timeto,placeto,freeplace,priceticket));
         }
-
-        public void Delete()
+        public void DeteleTrain(int getnomber)
         {
-            int a;
-            Console.WriteLine("Введите номер рейса который хотите удалить:");
-            a = Convert.ToInt32(Console.ReadLine());
-
-            TripsStorage.trips.RemoveAt(a);
+            TripsStorage.trips.RemoveAt(getnomber);
         }
-
-        public void ShowError()
+        private void ShowError()
         {
-            Console.WriteLine("ERROR!!");
+            _menuView.ShowwError();
+        }
+        public void AddOrDell(int c)
+        {
+            _menuView_ShowAddOrDel(c);
+        }
+        private void ADD()
+        {
+            Add();
+        }        
+        public void EROR()
+        {
+            ShowError();
+        }
+        private void ShowTripsTable()
+        {
+            _menuView.ShowTripsTable(TripsStorage.trips);
         }
     }
 }

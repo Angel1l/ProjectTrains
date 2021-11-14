@@ -10,7 +10,6 @@ namespace VEZIMENAMOYPOEZD.Model
     {
         public int ChoiceId { get; }
         public string ChoiceText { get; }
-
         public MenuChoiceModel(int choiceId, string choiceText)
         {
             ChoiceId = choiceId;

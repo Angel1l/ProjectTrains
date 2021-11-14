@@ -11,13 +11,10 @@ namespace VEZIMENAMOYPOEZD.Model
         public int Id { get; set; }
         public DateTime DepartureTime { get; set; }
         public string TripFrom { get; set; }
-
         public DateTime ArrivalTime { get; set; }
         public string TripTo { get; set; }
-
         public int  FreePlcae { get; set; }
         public double TicketPrice { get; set; }
-
         public TripModel(int id, DateTime departureTime, string tripFrom, DateTime arrivalTime, string tripTo, int freep, double ticketPrice)
         {
             Id = id;
