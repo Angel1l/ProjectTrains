@@ -87,7 +87,15 @@ namespace VEZIMENAMOYPOEZD.View
             a = Convert.ToInt32(Console.ReadLine());
 
             TripModel found = TripsStorage.trips.Find(item => item.Id == a);
-            Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
+            if (found != null)
+            {
+                Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Введите другое число");
+            }
             Console.ReadKey();
         }
         public void ShowMenu(List<MenuChoiceModel> choices)
