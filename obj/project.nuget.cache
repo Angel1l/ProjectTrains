@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P0SRt4l7MM4eSP8mLqp4XCICxJv8ZSPp6q5YKdUWxaxGAR+SL3vBtB71FlFI8wj21HSKF/So0DMK62nFe62f3g==",
+  "dgSpecHash": "jR7L/M5fimRlNo3zOwBLHgULpXZKbrGtJEk2AnfNiKh0dxzWC6rcfLtQQzyI/97OdqFiPWaaJUrVAUAdQPRkSA==",
   "success": true,
   "projectFilePath": "D:\\C#\\GEYCLUB\\VEZIMENAMOYPOEZD\\VEZIMENAMOYPOEZD\\VEZIMENAMOYPOEZD.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\drach\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

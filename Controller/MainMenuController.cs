@@ -9,7 +9,6 @@ namespace VEZIMENAMOYPOEZD.Controller
         private readonly MenuChoiceStorage _choiceStorage;
         private readonly AdminController admin;
         private readonly AdminView adminView;
-
         public MainMenuController()
         {
             
@@ -18,7 +17,6 @@ namespace VEZIMENAMOYPOEZD.Controller
             admin = new AdminController();
             adminView = new AdminView();
         }
-
         private void MenuSelectedHandler(int menu)
         {
             switch (menu)
@@ -45,15 +43,15 @@ namespace VEZIMENAMOYPOEZD.Controller
                     ShowFreePlace();
                     break;
                 case 8:
-                    _menuView.ShowPassword();                    
+                    _menuView.ShowPassword();
+                    _menuView.ShowDelOrAdd();
                     break;
                 default:
                     _menuView.ShowError();
                     break;                   
             }
             _menuView.ShowMenu(_choiceStorage.Choices);
-        }
-        
+        }        
         public void Run()
         {
             _menuView.PasswordforUser += _menuView_PasswordforUser;
@@ -65,16 +63,13 @@ namespace VEZIMENAMOYPOEZD.Controller
             _menuView.ShowHeader();
             _menuView.ShowMenu(_choiceStorage.Choices);
            
-        }
-
-        
-
+        }        
         private void _menuView_ShowAddOrDel(int c)
         {
             switch (c)
             {
                 case 1:
-                    admin.Add();
+                    adminView.Add();                   
                     ShowTripsTable();
                     break;
                 case 2:
@@ -86,12 +81,10 @@ namespace VEZIMENAMOYPOEZD.Controller
                     break;
             }
         }
-
         private void _menuView_PasswordforUser(int obj)
         {
             admin.PriemWork(obj);
         }
-
         public void Stop()
         {
             _menuView.MenuSelected -= MenuSelectedHandler;
@@ -99,37 +92,29 @@ namespace VEZIMENAMOYPOEZD.Controller
             _menuView.PasswordforUser -= _menuView_PasswordforUser;
             admin.Stop();
         }
-
         private void ShowTripsTable()
         {
             _menuView.ShowTripsTable(TripsStorage.trips);
-        }
-        
+        }        
         private void FindById()
         {
             _menuView.FindById(TripsStorage.trips);
         }
-
         private void FindByLastOstanovochka()
         {
             _menuView.FindByLastOstanovochka(TripsStorage.trips);
         }
-
         private void ShowTodayReus()
         {
             _menuView.ShowTodayReus();
-        }
-        
+        }        
         private void ShowWeekReuses()
         {
             _menuView.ShowWeekReus(TripsStorage.trips);
         }
-
         private void ShowFreePlace()
         {
             _menuView.ShooowFreePlace(TripsStorage.trips);
-        }
-        
-             
+        }                            
     }
 }

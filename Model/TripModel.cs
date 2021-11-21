@@ -25,7 +25,5 @@ namespace VEZIMENAMOYPOEZD.Model
             FreePlcae = freep;
             TicketPrice = ticketPrice;
         }
-
     }
-
 }

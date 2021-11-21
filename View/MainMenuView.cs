@@ -141,7 +141,6 @@ namespace VEZIMENAMOYPOEZD.View
         {
             Console.WriteLine("ERROR!!");
         }
-
         public void ShowPrice()
         {
             int a;
@@ -156,7 +155,7 @@ namespace VEZIMENAMOYPOEZD.View
                     Console.WriteLine("Мы нашли для вас подходящий рейс");
                     Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
 
-                }
+                }               
             }
             Console.WriteLine("==================================================================================");
             foreach (var item in TripsStorage.trips)
