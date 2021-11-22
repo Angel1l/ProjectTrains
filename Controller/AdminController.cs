@@ -16,17 +16,14 @@ namespace VEZIMENAMOYPOEZD.Controller
             adminView = new AdminView();
 
             adminView.Deletetrain += AdminView_Deletetrain;
-            adminView.CreateAddEvent += AdminView_CreateAddEvent;
+            
 
         }
-        public void AdminView_CreateAddEvent(int arg1, DateTime arg2, string arg3, DateTime arg4, string arg5, int arg6, int arg7)
-        {
-            TripsStorage.trips.Add(new TripModel(arg1, arg2, arg3, arg4, arg5, arg6, arg7));
-        }
+        
         public void Stop()
         {
             adminView.Deletetrain -= AdminView_Deletetrain;
-            adminView.CreateAddEvent -= AdminView_CreateAddEvent;
+            
         }
         private void AdminView_Deletetrain(int getnomber)
         {

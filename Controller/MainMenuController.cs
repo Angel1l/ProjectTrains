@@ -69,8 +69,7 @@ namespace VEZIMENAMOYPOEZD.Controller
             switch (c)
             {
                 case 1:
-                    adminView.Add();                   
-                    ShowTripsTable();
+                    adminView.Add();                                      
                     break;
                 case 2:
                     adminView.DeleteTrain();
