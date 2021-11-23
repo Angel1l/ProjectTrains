@@ -131,10 +131,11 @@ namespace VEZIMENAMOYPOEZD.View
         }
         public void ShowPassword()
         {
-            int a;
-            Console.WriteLine("Введите пароль:");
-            a = Convert.ToInt32(Console.ReadLine());
-            PasswordforUser(a);
+            
+                int a;
+                Console.WriteLine("Введите пароль:");
+                a = Convert.ToInt32(Console.ReadLine());
+                PasswordforUser(a);                                
         }
         public void ShowDelOrAdd()
         {
