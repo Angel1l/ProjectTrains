@@ -149,6 +149,7 @@ namespace VEZIMENAMOYPOEZD.View
         public void ShowwError()
         {
             Console.WriteLine("ERROR!!");
+            
         }
         public void ShowPrice()
         {
@@ -157,20 +158,24 @@ namespace VEZIMENAMOYPOEZD.View
             a = Convert.ToInt32(Console.ReadLine());
 
             TripModel found = TripsStorage.trips.Find(item => item.TicketPrice == a);
-            foreach (var item in TripsStorage.trips)
-            {
-                if (item.TicketPrice == a)
+            
+                if (found != null)
                 {
                     Console.WriteLine("Мы нашли для вас подходящий рейс");
-                    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
+                    Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", found.Id, found.DepartureTime, found.TripFrom, found.ArrivalTime, found.TripTo, found.FreePlcae, found.TicketPrice);
 
-                }               
-            }
+                }
+                else
+                {
+                    Console.WriteLine("Рейса с такой суммой нету");
+                }
+                       
             Console.WriteLine("==================================================================================");
             foreach (var item in TripsStorage.trips)
             {
                 if (item.TicketPrice > a)
                 {
+
                     Console.WriteLine("Мы так же можем предложить вам билет по дороже");
                     Console.WriteLine("Рейс:{0}, Время отбытия:{1}, Место отбытия:{2}, Время прибытия:{3}, Место Прибытия:{4}, Kоличество мест:{5}, Цена:{6}", item.Id, item.DepartureTime, item.TripFrom, item.ArrivalTime, item.TripTo, item.FreePlcae, item.TicketPrice);
 

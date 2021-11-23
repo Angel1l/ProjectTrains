@@ -42,7 +42,7 @@ namespace VEZIMENAMOYPOEZD.Controller
             else
             {
                 ShowError();
-                
+                return;
             }
             
         }              
