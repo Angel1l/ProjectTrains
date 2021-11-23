@@ -131,11 +131,22 @@ namespace VEZIMENAMOYPOEZD.View
         }
         public void ShowPassword()
         {
-            
+            try
+            {
                 int a;
                 Console.WriteLine("Введите пароль:");
                 a = Convert.ToInt32(Console.ReadLine());
-                PasswordforUser(a);                                
+                PasswordforUser(a);
+            }
+            catch (Exception exo)
+            {
+                Console.WriteLine("ОШИБКА");
+                Console.WriteLine($"Исключение: {exo.Message}");
+                Console.WriteLine("В след раз будь внимательней, а то на бананах будешь работать");
+                Console.ReadLine();
+                throw;
+
+            }                                                      
         }
         public void ShowDelOrAdd()
         {
